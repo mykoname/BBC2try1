@@ -15,19 +15,17 @@ public class BBCHomePage extends PageObject {
         driver.get(Utils.BASE_URL);
     }
 
-    public BBCNewsPage NewsPageClick() throws InterruptedException {
+    public BBCNewsPage NewsPageClick(){
 
         this.NewsPage.click();
         BBCNewsPage newsPage = new BBCNewsPage(driver);
-        Thread.sleep(5000);
-        Alert alert = driver.switchTo().alert(); // switch to alert
-        String alertMessage= driver.switchTo().alert().getText(); // capture alert message
-        System.out.println(alertMessage); // Print Alert Message
-        Thread.sleep(5000);
-        alert.accept();
-//        driver.getWindowHandle();
-//        driver.findElement(By.id("PopUp")).click();
-//        driver.findElement(By.className("tp-close tp-active")).click();
+//        Thread.sleep(5000);
+//        Alert alert = driver.switchTo().alert(); // switch to alert
+//        String alertMessage= driver.switchTo().alert().getText(); // capture alert message
+//        System.out.println(alertMessage); // Print Alert Message
+//        Thread.sleep(5000);
+//        alert.accept();
+
         return newsPage;
     }
 }
