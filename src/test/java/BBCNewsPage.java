@@ -2,6 +2,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+
+import java.util.List;
 
 public class BBCNewsPage extends PageObject {
 
@@ -13,10 +16,17 @@ public class BBCNewsPage extends PageObject {
     @FindBy(tagName = "h3")
     private WebElement labelMain;
 
+    @FindBy(tagName = "h3")  //(css = "div.gs-c-promo-heading__title")
+    private WebElement secondaryArticlesTitles;
+
 
     public BBCNewsPage(WebDriver driver) {super (driver); }
 
-
+    public void secondaryArticlesTitlesList(){
+        System.out.println(driver.findElement(By.tagName("h3")));
+        System.out.println(this.secondaryArticlesTitles.findElement(By.tagName("h3")));
+//        return list;
+    }
 
      public String nameOfHeadline() {
         String name = this.labelMain.getText();
