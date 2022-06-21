@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.pagefactory.ByAll;
 
 import java.util.List;
 
@@ -13,18 +14,28 @@ public class BBCNewsPage extends PageObject {
     @FindBy(name = "Close")
     private WebElement popUpCloseCross;
 
-    @FindBy(css = "div.nw-c-top-stories__primary-item h3")  //css = "div.nw-c-top-stories__primary-item h3"
+    @FindBy(css = "div.nw-c-top-stories__primary-item h3")  //(tagName = "h3")
     private WebElement labelMain;
 
-    @FindBy(tagName = "h3")  //(css = "div.gs-c-promo-heading__title h3")
+    @FindBy(xpath = "//div[@id ='news-top-stories-container']//a[@href]//h3")
     private WebElement secondaryArticlesTitles;
-
 
     public BBCNewsPage(WebDriver driver) {super (driver); }
 
     public void secondaryArticlesTitlesList(){
-        System.out.println(driver.findElement(By.tagName("h3")));
-        System.out.println(this.secondaryArticlesTitles.findElement(By.tagName("h3")));
+//        List<WebElement> listOfTitles = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
+        List<WebElement> listOfTitles = this.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
+        System.out.println(listOfTitles.size());
+        int number = listOfTitles.size();
+        StringBuilder[] puredTitles = new StringBuilder[number];
+        for (int i = 2; i<number; i++) {
+            if (listOfTitles.get(i).isDisplayed())  {
+                System.out.println(listOfTitles.get(i).getText());
+                puredTitles[i-2] = new StringBuilder(listOfTitles.get(i).getText());
+                System.out.println(puredTitles[i-2]);
+            }
+        }
+
 //        return list;
     }
 
