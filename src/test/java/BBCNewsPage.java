@@ -2,9 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.pagefactory.ByAll;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BBCNewsPage extends PageObject {
@@ -22,21 +21,37 @@ public class BBCNewsPage extends PageObject {
 
     public BBCNewsPage(WebDriver driver) {super (driver); }
 
-    public void secondaryArticlesTitlesList(){
-//        List<WebElement> listOfTitles = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
+    public List<String> secondaryTitlesHanlde(){
+
+    }
+
+    public List<String> secondaryArticlesTitlesList(){
+// TODO: couldn't undesrtand how to use here  WebElement secondaryArticlesTitles   ?:
         List<WebElement> listOfTitles = this.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
-        System.out.println(listOfTitles.size());
+//        System.out.println(listOfTitles.size());
+
         int number = listOfTitles.size();
-        StringBuilder[] puredTitles = new StringBuilder[number];
+        String[] puredTitles = new String[number];
+        int countOut = 0;
         for (int i = 2; i<number; i++) {
             if (listOfTitles.get(i).isDisplayed())  {
-                System.out.println(listOfTitles.get(i).getText());
-                puredTitles[i-2] = new StringBuilder(listOfTitles.get(i).getText());
-                System.out.println(puredTitles[i-2]);
+                puredTitles[countOut] = listOfTitles.get(i).getText();
+//                System.out.println(listOfTitles.get(i).getText());
+//               System.out.println(puredTitles[countOut]);
+               countOut++;
             }
         }
+        List<String> puredTitlesList = Arrays.stream(puredTitles).toList().subList(0,countOut);
+//        for (String outList : puredTitles){
+//            System.out.println(outList);
+//        }
+//        System.out.println(countOut);
 
-//        return list;
+//        for (String outList : puredTitlesList){
+//            System.out.println(outList);
+//        }
+//        System.out.println(puredTitlesList.size());
+        return puredTitlesList;
     }
 
      public String nameOfHeadline() {

@@ -39,31 +39,24 @@ public class BBCOneTests {
     public void testGetListSecondaryTitles(){   // Part 1 test2
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCNewsPage newsPage = homePage.NewsPageClick();
-        newsPage.secondaryArticlesTitlesList();
-//       List<WebElement> listOfTitles = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
-//        System.out.println(newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3")).size());
-//     int number = newsPage.driver.findElements(By.tagName("h3")).size();
-//        StringBuilder[] puredTitles = new StringBuilder[number];
-//        for (int i = 2; i<number; i++) {
-//             if (listOfTitles.get(i).isDisplayed())
-//                 {
-//                 System.out.println(listOfTitles.get(i).getText());
-//                 puredTitles[i-2] = new StringBuilder(listOfTitles.get(i).getText());
-//                 System.out.println(puredTitles[i-2]);
-//                 }
-//            }
+//        List<String> outputList = ;
 
-//        List<String> avaitedListOfTitles = List.of("Row erupts over blocked goods at Russian territory",
-//                "India floods destroy millions of homes and dreams",
-//                "Ben Stiller describes 'distressing' Ukraine visit",
-//                "Policeman dismissed over attack on female diners",
-//                "UN sexual abuse claims 'must be investigated'",
-//                "Iconic Hong Kong floating restaurant sinks",
-//                "The woman who could upend US abortion rights",
-//                "Photos of Prince William mark duke's 40th birthday",
-//                "Russian journalist's Nobel medal sells for $103.5m");
+        List<String> avaitedListOfTitles = List.of(
+                "Russia warns Lithuania over rail transit blockade",
+                        "Election officials detail Trump followers' threats",
+                        "Mining firm Glencore admits UK bribery charges",
+                        "Fans 'treated like animals' at Champions League final",
+                        "In pictures: Americans face extreme temperatures",
+                        "Elon Musk's daughter cuts ties with her father",
+                        "French court upholds ban on burkini swimsuits",
+                        "Strava app flaw revealed runs at secret bases",
+                        "Bangladesh: Deadly floods leave millions displaced",
+                        "X Factor star's fiancee dies on wedding day",
+                        "Russian journalist's Nobel medal sells for $103.5m",
+                        "Policeman dismissed over attack on female diners",
+                        "EasyJet Spain cabin crew set to strike in July");
 //               //                   newsPage.secondaryArticlesTitlesList();
-//        Assertions.assertLinesMatch(avaitedListOfTitles, secondaryTitlesListOut);
+        Assertions.assertLinesMatch(avaitedListOfTitles, newsPage.secondaryArticlesTitlesList());
     }
 
 
