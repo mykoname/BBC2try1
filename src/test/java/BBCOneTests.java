@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,12 +39,23 @@ public class BBCOneTests {
     public void testGetListSecondaryTitles(){   // Part 1 test2
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCNewsPage newsPage = homePage.NewsPageClick();
-        WebElement newsTopStoriesContainer = newsPage.driver.findElement(By.id("news-top-stories-container"));
-        WebElement[] list = newsTopStoriesContainer.findElements(By.tagName("h3")).stream().toList().toArray(new WebElement[0]);
-     int number = newsTopStoriesContainer.findElements(By.tagName("h3")).size();
-        for (int i = 0; i<number-1; i++) {
-                            System.out.println(list[i].getText());
-            }
+//        WebElement newsTopStoriesContainer = newsPage.driver.findElement(By.id("news-top-stories-container"));
+//        WebElement[] list = newsTopStoriesContainer.findElements(By.tagName("h3")).stream().toList().toArray(new WebElement[0]);
+//          List<WebElement> list = newsPage.driver.findElement(By.id("news-top-stories-container")).findElements(By.tagName("h3")); //.stream().toList().toArray(new WebElement[0]);
+    //                                                          "//div[@id = 'table_div_id']//tr")
+          List<WebElement> list = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//h3")); //.stream().toList().toArray(new WebElement[0]);
+//          List<WebElement> list = newsPage.driver.findElements(By.id("news-top-stories-container")); //.stream().toList().toArray(new WebElement[0]);
+
+//     int number = newsTopStoriesContainer.findElements(By.tagName("h3")).size();
+     int number = newsPage.driver.findElements(By.tagName("h3")).size();
+//        for (int i = 2; i<6; i++) {
+//                            System.out.println(list.get(i).getText());
+//            }
+        for (WebElement  ltt: list){
+            System.out.println(ltt.getText());
+        }
+
+
 //        List<String> avaitedListOfTitles = Collections.singletonList("");
 //                   newsPage.secondaryArticlesTitlesList();
 //        List<String> actualListOfTitles = Collections.singletonList("");

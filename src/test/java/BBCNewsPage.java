@@ -13,10 +13,10 @@ public class BBCNewsPage extends PageObject {
     @FindBy(name = "Close")
     private WebElement popUpCloseCross;
 
-    @FindBy(tagName = "h3")
+    @FindBy(css = "div.nw-c-top-stories__primary-item h3")  //css = "div.nw-c-top-stories__primary-item h3"
     private WebElement labelMain;
 
-    @FindBy(tagName = "h3")  //(css = "div.gs-c-promo-heading__title")
+    @FindBy(tagName = "h3")  //(css = "div.gs-c-promo-heading__title h3")
     private WebElement secondaryArticlesTitles;
 
 
@@ -30,6 +30,7 @@ public class BBCNewsPage extends PageObject {
 
      public String nameOfHeadline() {
         String name = this.labelMain.getText();
+         System.out.println(name);
         return name;
     }
 
