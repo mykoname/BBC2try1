@@ -39,8 +39,6 @@ public class BBCOneTests {
     public void testGetListSecondaryTitles(){   // Part 1 test2
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCNewsPage newsPage = homePage.NewsPageClick();
-//        List<String> outputList = ;
-
         List<String> avaitedListOfTitles = List.of(
                 "Russia warns Lithuania over rail transit blockade",
                         "Election officials detail Trump followers' threats",
@@ -55,7 +53,6 @@ public class BBCOneTests {
                         "Russian journalist's Nobel medal sells for $103.5m",
                         "Policeman dismissed over attack on female diners",
                         "EasyJet Spain cabin crew set to strike in July");
-//               //                   newsPage.secondaryArticlesTitlesList();
         Assertions.assertLinesMatch(avaitedListOfTitles, newsPage.secondaryArticlesTitlesList());
     }
 

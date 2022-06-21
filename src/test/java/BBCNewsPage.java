@@ -21,36 +21,20 @@ public class BBCNewsPage extends PageObject {
 
     public BBCNewsPage(WebDriver driver) {super (driver); }
 
-    public List<String> secondaryTitlesHanlde(){
-
-    }
 
     public List<String> secondaryArticlesTitlesList(){
 // TODO: couldn't undesrtand how to use here  WebElement secondaryArticlesTitles   ?:
         List<WebElement> listOfTitles = this.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
-//        System.out.println(listOfTitles.size());
-
         int number = listOfTitles.size();
         String[] puredTitles = new String[number];
         int countOut = 0;
         for (int i = 2; i<number; i++) {
             if (listOfTitles.get(i).isDisplayed())  {
                 puredTitles[countOut] = listOfTitles.get(i).getText();
-//                System.out.println(listOfTitles.get(i).getText());
-//               System.out.println(puredTitles[countOut]);
                countOut++;
             }
         }
         List<String> puredTitlesList = Arrays.stream(puredTitles).toList().subList(0,countOut);
-//        for (String outList : puredTitles){
-//            System.out.println(outList);
-//        }
-//        System.out.println(countOut);
-
-//        for (String outList : puredTitlesList){
-//            System.out.println(outList);
-//        }
-//        System.out.println(puredTitlesList.size());
         return puredTitlesList;
     }
 
