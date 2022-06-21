@@ -44,33 +44,35 @@ public class BBCOneTests {
 //          List<WebElement> list = newsPage.driver.findElement(By.id("news-top-stories-container")).findElements(By.tagName("h3")); //.stream().toList().toArray(new WebElement[0]);
     //                                                          "//div[@id = 'table_div_id']//tr")
 //  very good enough:        List<WebElement> list = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//h3")); //.stream().toList().toArray(new WebElement[0]);
-          List<WebElement> list = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//h3")); //.stream().toList().toArray(new WebElement[0]);
+// more than very good:        List<WebElement> list = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a//h3"));
+        //(By.cssSelector("#news-top-stories-container a h3")
+    List<WebElement> list = newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']/a"+"href"));
+
 //          List<WebElement> list = newsPage.driver.findElements(By.id("news-top-stories-container")); //.stream().toList().toArray(new WebElement[0]);
-
+        System.out.println(newsPage.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a//@href//h3")).size());
 //     int number = newsTopStoriesContainer.findElements(By.tagName("h3")).size();
-     int number = newsPage.driver.findElements(By.tagName("h3")).size();
-     List<String>  secondaryTitlesListOut = Collections.singletonList("");
-        for (int i = 2; i<12; i++) {
-                            System.out.println(list.get(i).getText());
-                            secondaryTitlesListOut = Collections.singletonList(list.get(i).getText());
-            }
-//        for (WebElement  ltt: list){
-//            System.out.println(ltt.getText());
-//        }
+  //   int number = newsPage.driver.findElements(By.tagName("h3")).size();
+     //   List<String>  secondaryTitlesListOut = Collections.singletonList("");
+//        for (int i = 0; i<4; i++) {
+//                            System.out.println(list.get(i).getText());
+//                            secondaryTitlesListOut = Collections.singletonList(list.get(i).getText());
+//            }
+        for (WebElement  ltt: list){
+            System.out.println(ltt.getText());
+        }
 
 
-        List<String> avaitedListOfTitles = List.of("Row erupts over blocked goods at Russian territory",
-                "India floods destroy millions of homes and dreams",
-                "Ben Stiller describes 'distressing' Ukraine visit",
-                "Policeman dismissed over attack on female diners",
-                "UN sexual abuse claims 'must be investigated'",
-                "Iconic Hong Kong floating restaurant sinks",
-                "The woman who could upend US abortion rights",
-                "Photos of Prince William mark duke's 40th birthday",
-                "Russian journalist's Nobel medal sells for $103.5m");
-//                   newsPage.secondaryArticlesTitlesList();
-//        List<String> actualListOfTitles = Collections.singletonList("");
-        Assertions.assertLinesMatch(avaitedListOfTitles, secondaryTitlesListOut);
+//        List<String> avaitedListOfTitles = List.of("Row erupts over blocked goods at Russian territory",
+//                "India floods destroy millions of homes and dreams",
+//                "Ben Stiller describes 'distressing' Ukraine visit",
+//                "Policeman dismissed over attack on female diners",
+//                "UN sexual abuse claims 'must be investigated'",
+//                "Iconic Hong Kong floating restaurant sinks",
+//                "The woman who could upend US abortion rights",
+//                "Photos of Prince William mark duke's 40th birthday",
+//                "Russian journalist's Nobel medal sells for $103.5m");
+//               //                   newsPage.secondaryArticlesTitlesList();
+//        Assertions.assertLinesMatch(avaitedListOfTitles, secondaryTitlesListOut);
     }
 
 
