@@ -56,6 +56,17 @@ public class BBCOneTests {
         Assertions.assertLinesMatch(avaitedListOfTitles, newsPage.secondaryArticlesTitlesList());
     }
 
+    @Test
+    public void testCategoryAndFirstArticle(){   // Part1 test3
+        BBCHomePage homePage = new BBCHomePage(driver);
+        BBCNewsPage newsPage = homePage.NewsPageClick();
+        String stringForSearch = newsPage.storedSearchTerm();
+        BBCSearchPage searchPage = newsPage.startSearchPage();
+        System.out.println(searchPage.firstSearchResult(stringForSearch));
+
+
+    }
+
 
     @AfterAll
     public static void cleanUp(){

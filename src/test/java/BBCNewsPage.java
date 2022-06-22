@@ -19,7 +19,33 @@ public class BBCNewsPage extends PageObject {
     @FindBy(xpath = "//div[@id ='news-top-stories-container']//a[@href]//h3")
     private WebElement secondaryArticlesTitles;
 
+    @FindBy(css = "li.nw-c-promo-meta a span")
+    private WebElement categoryLink;
+
+    @FindBy(id = "orbit-search-button")
+    private WebElement searchBar;
+
     public BBCNewsPage(WebDriver driver) {super (driver); }
+
+    public void openSearchPage(){this.searchBar.click();}
+
+    public String getMainNewsCategoryName(){
+        String name = this.categoryLink.getText();
+        return name;
+    }
+    public String storedSearchTerm(){
+        String term = getMainNewsCategoryName();
+        return term;
+    }
+
+    public BBCSearchPage startSearchPage() {
+        openSearchPage();
+        BBCSearchPage searchPage = new BBCSearchPage(driver);
+        return searchPage;
+//        String searchTerm =  getMainNewsCategoryName();
+//        openSearchPage();
+//        return searchTerm;
+    }
 
 
     public List<String> secondaryArticlesTitlesList(){
