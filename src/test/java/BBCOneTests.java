@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BBCOneTests {
     private static final WebDriver driver;
@@ -63,21 +64,13 @@ public class BBCOneTests {
         String stringForSearch = newsPage.storedSearchTerm();
         BBCSearchPage searchPage = newsPage.startSearchPage();
         BBCSearchPage searchOne = searchPage.makeSearch(stringForSearch);
-        System.out.println(searchOne.firstSearchResult(stringForSearch));
-//
-//        List<WebElement> list = searchOne.driver.findElements(By.cssSelector("ul li a"));
-//        for (WebElement l: list) {
-//            System.out.println(l.getTagName());
-//            System.out.println(l.getText());
-//        }
-//
-   //    System.out.println(searchPage.firstSearchResult(stringForSearch));
+        assertTrue(searchOne.firstSearchResult(stringForSearch).equals("At The Edge of Asia"));
     }
 
 
-//    @AfterAll
-//    public static void cleanUp(){
-//        driver.manage().deleteAllCookies();
-//        driver.close();
-//    }
+    @AfterAll
+    public static void cleanUp(){
+        driver.manage().deleteAllCookies();
+        driver.close();
+    }
 }

@@ -10,7 +10,7 @@ public class BBCSearchPage extends PageObject {
     @FindBy (xpath = "//button[@type='submit']")
     private WebElement startSearch;
     // <ul role="list" spacing="responsive"
-    @FindBy(xpath = "//ul[@spacing='responsive']") //(xpath = "//div/div/ul/li/div/div/div/a")//"//ul[@spacing='responsive']")// (css = "ul li a") //xpath = "//div[@id ='main-content']//li")
+    @FindBy(xpath = "//ul[@spacing='responsive']//li[1]//a[@href]") //(xpath = "//div/div/ul/li/div/div/div/a")//"//ul[@spacing='responsive']")// (css = "ul li a") //xpath = "//div[@id ='main-content']//li")
     private WebElement firstResult;
 
     public BBCSearchPage(WebDriver driver) {super (driver); }
@@ -23,7 +23,6 @@ public class BBCSearchPage extends PageObject {
     }
 
     public String firstSearchResult(String searchTerm){
-//        this.makeSearch(searchTerm);
         String result = this.firstResult.getText();
         return result;
     }
