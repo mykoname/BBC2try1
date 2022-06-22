@@ -29,7 +29,7 @@ public class BBCTwoPart2Tests {
 
         @ParameterizedTest     // BBC2 Part2 Test1
         @MethodSource("dataForTestTeamScores")
-    public void testTeamScoresDisplay(String nameOfChampionship){
+    public void testTeamScoresDisplay(String nameOfChampionship, String month){
             BBCHomePage homePage = new BBCHomePage(driver);
             BBCSportPage sportPage = homePage.sportPageClick();
             sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick();
@@ -37,7 +37,7 @@ public class BBCTwoPart2Tests {
         }
     static Stream<Arguments> dataForTestTeamScores() {
         return Stream.of(
-                Arguments.of("Scottish Championship")
+                Arguments.of("Scottish Championship", "MAY")
                 );
     }
 

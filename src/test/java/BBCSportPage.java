@@ -8,21 +8,14 @@ public class BBCSportPage extends PageObject {
 
         @FindBy(linkText = "Football")
         private WebElement footballLink;
-                                                        //data-stat-title="Scores & Fixtures"
-        @FindBy (linkText = "Scores & Fixtures")   //    xpath = "//button[@type='submit']")
+        @FindBy (linkText = "Scores & Fixtures")   //    //data-stat-title="Scores & Fixtures"
         private WebElement scoresLink;
-//
         @FindBy (xpath = "//input[@name='search']")//(id = "search-input")
         private WebElement scoresSearchBar;
-//        @FindBy (xpath = "//input//button[@type='submit']")
-//        private WebElement scoresSearchGlass;
-        @FindBy (xpath = "//li//a//span['MAY']")
-        private WebElement monthSelector;
+             // (xpath = "//ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'MAY')]")
+        @FindBy (xpath = "//ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'MAY')]")
+        private WebElement monthSelectorMay;
 
-
-//        // <ul role="list" spacing="responsive"
-//        @FindBy(xpath = "//ul[@spacing='responsive']//li[1]//a[@href]") //(xpath = "//div/div/ul/li/div/div/div/a")//"//ul[@spacing='responsive']")// (css = "ul li a") //xpath = "//div[@id ='main-content']//li")
-//        private WebElement firstResult;
 
         public BBCSportPage(WebDriver driver) {super (driver); }
 
@@ -35,22 +28,17 @@ public class BBCSportPage extends PageObject {
     public BBCSportPage scoresPageClick(){
         this.scoresLink.click();
         //this.startSearch.click();
-        BBCSportPage scoresPageOne = new BBCSportPage(driver);
+        BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
         return scoresPageOne;
     }
     public BBCSportPage makeSearchChampionship(String searchTerm){
-        this.scoresSearchBar.sendKeys(searchTerm);
-        //!!!!!!:
-       // this.driver.findElement(By.xpath("//div[@id ='sp-c-search']//mark["+searchTerm+"]")).click(); // By.xpath("//mark['Scottish Championship']")
-       Select dropList = new Select(driver.findElement(By.xpath("//*[@id='downshift-0-item-0']")));   //(By.xpath("//a[@class='sp-c-search__result-item']")));   //(By.xpath("//input[@name='search']")));
-       dropList.selectByValue(searchTerm);
-//    //    this.scoresSearchGlass.click();
+        this.scoresSearchBar.sendKeys(searchTerm);    //(String.valueOf(searchTerm.charAt(0)));
+        this.driver.findElement(By.xpath("//ul[@id ='search-results-list']//li//mark['"+searchTerm+"']")).click();
         BBCSportPage scoresPageTwo = new BBCSportPage(driver);
         return scoresPageTwo;
     }
     public BBCSportPage monthSelectorClick(){
-        this.monthSelector.click();
-        //this.startSearch.click();
+        this.monthSelectorMay.click();
         BBCSportPage scoresPageMonth = new BBCSportPage(driver);
         return scoresPageMonth;
     }
