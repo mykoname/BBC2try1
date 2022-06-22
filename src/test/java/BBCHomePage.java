@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 public class BBCHomePage extends PageObject {
     @FindBy(linkText = "News")
     private WebElement NewsPage;
+    @FindBy(linkText = "Sport")
+    private WebElement sportPage;
 
 
     public BBCHomePage(WebDriver driver) {
@@ -16,16 +18,16 @@ public class BBCHomePage extends PageObject {
     }
 
     public BBCNewsPage NewsPageClick(){
-
         this.NewsPage.click();
         BBCNewsPage newsPage = new BBCNewsPage(driver);
-//        Thread.sleep(5000);
-//        Alert alert = driver.switchTo().alert(); // switch to alert
-//        String alertMessage= driver.switchTo().alert().getText(); // capture alert message
-//        System.out.println(alertMessage); // Print Alert Message
-//        Thread.sleep(5000);
-//        alert.accept();
-
-        return newsPage;
+    return newsPage;
     }
+
+    public BBCSportPage sportPageClick(){
+        this.sportPage.click();
+        BBCSportPage sportPage = new BBCSportPage(driver);
+    return sportPage;
+    }
+
+
 }
