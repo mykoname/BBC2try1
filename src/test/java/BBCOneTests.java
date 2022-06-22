@@ -62,9 +62,16 @@ public class BBCOneTests {
         BBCNewsPage newsPage = homePage.NewsPageClick();
         String stringForSearch = newsPage.storedSearchTerm();
         BBCSearchPage searchPage = newsPage.startSearchPage();
-        System.out.println(searchPage.firstSearchResult(stringForSearch));
-
-
+        System.out.println(searchPage.makeSearch(stringForSearch).firstSearchResult(stringForSearch));
+//
+//        searchPage.makeSearch(stringForSearch);
+//        List<WebElement> list = searchPage.driver.findElements(By.cssSelector("a"));
+//        for (WebElement l: list) {
+//            System.out.println(l.getTagName());
+//            System.out.println(l.getText());
+//        }
+//
+   //    System.out.println(searchPage.firstSearchResult(stringForSearch));
     }
 
 

@@ -19,7 +19,7 @@ public class BBCNewsPage extends PageObject {
     @FindBy(xpath = "//div[@id ='news-top-stories-container']//a[@href]//h3")
     private WebElement secondaryArticlesTitles;
 
-    @FindBy(css = "li.nw-c-promo-meta a span")
+    @FindBy(css = "li.nw-c-promo-meta a span") //(css = "li.nw-c-promo-meta a span")
     private WebElement categoryLink;
 
     @FindBy(id = "orbit-search-button")
