@@ -32,7 +32,7 @@ public class BBCTwoPart2Tests {
     public void testTeamScoresDisplay(String nameOfChampionship, String month){
             BBCHomePage homePage = new BBCHomePage(driver);
             BBCSportPage sportPage = homePage.sportPageClick();
-            sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick();
+            sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
 
         }
     static Stream<Arguments> dataForTestTeamScores() {

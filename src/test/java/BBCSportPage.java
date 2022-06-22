@@ -12,10 +12,10 @@ public class BBCSportPage extends PageObject {
         private WebElement scoresLink;
         @FindBy (xpath = "//input[@name='search']")//(id = "search-input")
         private WebElement scoresSearchBar;
-             // (xpath = "//ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'MAY')]")
         @FindBy (xpath = "//ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'MAY')]")
         private WebElement monthSelectorMay;
-
+                          // (xpath = "//ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'MAY')]")
+        private String monthXpathBase = "ul[@id ='sp-timeline-past-dates']//li[@class='sp-c-date-picker-timeline__item']//a//span[contains(text(),'";
 
         public BBCSportPage(WebDriver driver) {super (driver); }
 
@@ -37,8 +37,9 @@ public class BBCSportPage extends PageObject {
         BBCSportPage scoresPageTwo = new BBCSportPage(driver);
         return scoresPageTwo;
     }
-    public BBCSportPage monthSelectorClick(){
-        this.monthSelectorMay.click();
+    public BBCSportPage monthSelectorClick(String month){
+        // this.monthSelectorMay.click();
+        this.driver.findElement(By.xpath("//"+monthXpathBase+month+"')]")).click();
         BBCSportPage scoresPageMonth = new BBCSportPage(driver);
         return scoresPageMonth;
     }
