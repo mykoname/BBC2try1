@@ -14,8 +14,8 @@ public class BBCSportPage extends PageObject {
 //
         @FindBy (xpath = "//input[@name='search']")//(id = "search-input")
         private WebElement scoresSearchBar;
-        @FindBy (xpath = "//input//button[@type='submit']")
-        private WebElement scoresSearchGlass;
+//        @FindBy (xpath = "//input//button[@type='submit']")
+//        private WebElement scoresSearchGlass;
         @FindBy (xpath = "//li//a//span['MAY']")
         private WebElement monthSelector;
 
@@ -42,7 +42,7 @@ public class BBCSportPage extends PageObject {
         this.scoresSearchBar.sendKeys(searchTerm);
         //!!!!!!:
        // this.driver.findElement(By.xpath("//div[@id ='sp-c-search']//mark["+searchTerm+"]")).click(); // By.xpath("//mark['Scottish Championship']")
-       Select dropList = new Select(driver.findElement(By.xpath("//input[@name='search']")));
+       Select dropList = new Select(driver.findElement(By.xpath("//*[@id='downshift-0-item-0']")));   //(By.xpath("//a[@class='sp-c-search__result-item']")));   //(By.xpath("//input[@name='search']")));
        dropList.selectByValue(searchTerm);
 //    //    this.scoresSearchGlass.click();
         BBCSportPage scoresPageTwo = new BBCSportPage(driver);
