@@ -36,29 +36,19 @@ public class BBCTwoPart2Tests {
             BBCSportPage sportPage = homePage.sportPageClick();
             BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
 
-//            teamXpathBase = "article[@class ='sp-c-fixture']//abbr[@title='";
-//    poolOfPlays = "//span[@role ='region']";
-// System.out.println(this.driver.findElement(By.xpath("//article[@class ='sp-c-fixture']//abbr[@title='Airdrieonians'] | //article[@class ='sp-c-fixture']//abbr[@title='Queen's Park']")));
-            //td[contains(text(),'Submit')]
-//    List<WebElement> list =scoresPageOne.driver.findElements(By.xpath("//div//ul//li//a[contains(text(),'Airdrieonians')]"));
+            List<WebElement> listLeft =scoresPageOne.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home"));
+            List<WebElement> listRight=scoresPageOne.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away"));
+            System.out.println(scoresPageOne.driver.findElements(By.cssSelector("article span > span > span")).size());
+            System.out.println(scoresPageOne.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home")).size());
 
-//            List<WebElement> list =scoresPageOne.driver.findElements(By.linkText("Airdrieonians"));
-            List<WebElement> list2 =scoresPageOne.driver.findElements(By.cssSelector("a article"));
-            List<WebElement> list3 =scoresPageOne.driver.findElements(By.xpath("//div//ul//li//a//article[contains(text(),'Airdrieonians')]"));
-            System.out.println(scoresPageOne.driver.findElements(By.cssSelector("a article")).size());
-            System.out.println(scoresPageOne.driver.findElements(By.xpath("//div//ul//li//a//article[contains(text(),'Airdrieonians')]")).size());
-            for (WebElement l: list2) {
-                System.out.println(l.getTagName());
-                System.out.println(l.getText());
+            for (WebElement l: listLeft) {
+                System.out.println("listLeft   "+l.getText());
+                System.out.println("!l!!!");
+             }
+            for (WebElement l: listRight) {
+                System.out.println("listRight  "+l.getText());
+                System.out.println("!r!!!");
             }
-            for (WebElement l: list3) {
-                System.out.println(l.getTagName());
-                System.out.println(l.getText());
-            }
-//    System.out.println(scoresPageOne.driver.findElement(By.xpath("//article[contains(text(),'Airdrieonians')]")).getText());
-//    System.out.println(scoresPageOne.driver.findElement(By.xpath("//article[@class ='sp-c-fixture']//abbr[@title='Airdrieonians']")).getText());
-//            System.out.println(scoresPageOne.driver.findElement(By.xpath("//article[@title='Airdrieonians']")).getText());
-//            System.out.println(scoresPageOne.driver.findElement(By.xpath("//*[@title='Airdrieonians'] | //*[@title='Queen's Park']")));
         }
     static Stream<Arguments> dataForTestTeamScores() {
        // name of championship | month | team1 | team2 | score1 | score2
@@ -66,8 +56,6 @@ public class BBCTwoPart2Tests {
                 Arguments.of("Scottish Championship", "MAY")
                 );
     }
-
-
 
 //    @AfterAll
 //    public static void cleanUp(){
