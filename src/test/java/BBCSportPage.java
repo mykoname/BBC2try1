@@ -54,24 +54,19 @@ public class BBCSportPage extends PageObject {
         return scoresPageMonth;
     }
     public boolean checkTeamsAndScore(String team1, String team2, int score1, int score2){
-//        List<WebElement> listOfTitles = this.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
-        this.driver.findElements(By.xpath(poolOfPlays));
-// //tr[@class='diff-row evTabRow bc' and @data-bname="Aramis Grey"]
-//         //*[contains(., 'hello') or contains(., 'world')]
-
-//        //*[(@id|@class|@href|text())[contains(translate(.,'DOWNLOAD','download'), 'download')]]
-//        //article[@class ='sp-c-fixture']//abbr[@title[contains('Airdrieonians', 'download')]]
-
-//    teamXpathBase = "article[@class ='sp-c-fixture']//abbr[@title='";
-//    poolOfPlays = "//span[@role ='region']";
-
-      //  this.driver.findElement(By.xpath("//span[@role ='region']")).findElement();
-
-//        this.driver.findElement(By.xpath("//"+teamXpathBase+team1+"')]")).getText();
+        List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home"));
+        List<WebElement> listRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away"));
+        for (WebElement l: listLeft) {
+            System.out.println("listLeft   "+l.getText());
+            System.out.println("!l!!!");
+        }
+        for (WebElement l: listRight) {
+            System.out.println("listRight  " + l.getText());
+            System.out.println("!r!!!");
+        }
 
 
 
-//        BBCSportPage scoresPageMonth = new BBCSportPage(driver);
         boolean teamsAndScoreVerified = true; //!!!!!!!!!!! ---поменять!!!!!!!!!!!!!
         return teamsAndScoreVerified;
     }
