@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -54,8 +53,16 @@ public class BBCSportPage extends PageObject {
         return scoresPageMonth;
     }
 
+    public TeamResult getTeamResultByName(String name) {
+        return new TeamResult(name, driver);
+    }
 
+    public matchResults getMatchResults(String lhsTeamName, String rhsTeamName) {
+            TeamResult l = getTeamResultByName(lhsTeamName);
+            TeamResult r = getTeamResultByName(rhsTeamName);
 
+            return new matchResults(lhsTeamName, rhsTeamName, l.getScore(), r.getScore());
+    }
 
     public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
