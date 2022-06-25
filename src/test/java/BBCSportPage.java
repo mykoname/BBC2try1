@@ -23,6 +23,7 @@ public class BBCSportPage extends PageObject {
         private String teamXpathBase = "article[@class ='sp-c-fixture']//abbr[@title='";
         private String poolOfPlays = "//span[@role ='region']";
 
+
         public BBCSportPage(WebDriver driver) {super (driver); }
 
         public BBCSportPage footballPageClick(){
@@ -34,7 +35,6 @@ public class BBCSportPage extends PageObject {
         }
     public BBCSportPage scoresPageClick(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//        driver.manage().timeouts().getImplicitWaitTimeout();
         this.scoresLink.click();
         BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
         return scoresPageOne;
@@ -44,32 +44,62 @@ public class BBCSportPage extends PageObject {
         this.scoresSearchBar.sendKeys(searchTerm);    //(String.valueOf(searchTerm.charAt(0)));
         this.driver.findElement(By.xpath("//ul[@id ='search-results-list']//li//mark['"+searchTerm+"']")).click();
         BBCSportPage scoresPageTwo = new BBCSportPage(driver);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return scoresPageTwo;
     }
     public BBCSportPage monthSelectorClick(String month){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        // this.monthSelectorMay.click();
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.driver.findElement(By.xpath("//"+monthXpathBase+month+"')]")).click();
         BBCSportPage scoresPageMonth = new BBCSportPage(driver);
         return scoresPageMonth;
     }
-    public boolean checkTeamsAndScore(String team1, String team2, int score1, int score2){
-        List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home"));
-        List<WebElement> listRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away"));
-        for (WebElement l: listLeft) {
-            System.out.println("listLeft   "+l.getText());
-            System.out.println("!l!!!");
+
+
+
+
+    public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
+        List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
+        List<WebElement> scopeLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block > span"));
+        List<WebElement> listRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span > span > span"));
+        List<WebElement> scopeRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block > span"));
+        int numberOfLines = listLeft.size();
+        matchResults[] allResults = new matchResults[numberOfLines];
+        for (int i = 0; i < numberOfLines; i++){
+            allResults[i] = new matchResults(listLeft.get(i).getText(),listRight.get(i).getText(), Integer.valueOf(scopeLeft.get(i).getText()), Integer.valueOf(scopeRight.get(i).getText()));
+           System.out.println("teamLeft "+i+":   "+allResults[i].teamLeft);
+            System.out.println("scoreLeft "+i+":  "+ allResults[i].scoreLeft);
+            System.out.println("teamRight "+i+":   "+allResults[i].teamRight);
+            System.out.println("scoreRight "+i+":  "+allResults[i].scoreRight);
         }
-        for (WebElement l: listRight) {
-            System.out.println("listRight  " + l.getText());
-            System.out.println("!r!!!");
+        int rightLineNumber = 0;
+//        System.out.println("assesed Data:   "+assessedResult.teamLeft);
+//        System.out.println(assessedResult.scoreLeft);
+//        System.out.println(assessedResult.teamRight);
+//        System.out.println(assessedResult.scoreRight);
+//        if (allResults[0].equals(assessedResult)){
+//            System.out.println("equals!!");
+//        }
+//        else {
+//            System.out.println("not equals");
+//        }
+//        if (allResults[1].equals(assessedResult)){
+//            System.out.println("version 2  equals!!");
+//        }
+//        else {
+//            System.out.println("version 2  not equals");
+//        }
+
+        while (!allResults[rightLineNumber].equals(assessedResult) & rightLineNumber<numberOfLines){
+            rightLineNumber++;
         }
-
-
-
-        boolean teamsAndScoreVerified = true; //!!!!!!!!!!! ---поменять!!!!!!!!!!!!!
-        return teamsAndScoreVerified;
+        matchResults fromSiteAppropriateResult = allResults[rightLineNumber];
+        System.out.println("numdber of right line:   "+rightLineNumber);
+        return fromSiteAppropriateResult;
     }
+
+//    private Object allResults() {
+//        return null;
+//    }
 
 //        public String firstSearchResult(String searchTerm){
 //            String result = this.firstResult.getText();
