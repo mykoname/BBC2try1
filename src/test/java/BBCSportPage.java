@@ -72,38 +72,12 @@ public class BBCSportPage extends PageObject {
             System.out.println("scoreRight "+i+":  "+allResults[i].scoreRight);
         }
         int rightLineNumber = 0;
-//        System.out.println("assesed Data:   "+assessedResult.teamLeft);
-//        System.out.println(assessedResult.scoreLeft);
-//        System.out.println(assessedResult.teamRight);
-//        System.out.println(assessedResult.scoreRight);
-//        if (allResults[0].equals(assessedResult)){
-//            System.out.println("equals!!");
-//        }
-//        else {
-//            System.out.println("not equals");
-//        }
-//        if (allResults[1].equals(assessedResult)){
-//            System.out.println("version 2  equals!!");
-//        }
-//        else {
-//            System.out.println("version 2  not equals");
-//        }
-
         while (!allResults[rightLineNumber].equals(assessedResult) & rightLineNumber<numberOfLines){
             rightLineNumber++;
         }
         matchResults fromSiteAppropriateResult = allResults[rightLineNumber];
-//        System.out.println("numdber of right line:   "+rightLineNumber);
         return fromSiteAppropriateResult;
     }
 
-//    private Object allResults() {
-//        return null;
-//    }
-
-//        public String firstSearchResult(String searchTerm){
-//            String result = this.firstResult.getText();
-//            return result;
-//        }
 
 }

@@ -28,7 +28,7 @@ public class BBCTwoPart2Tests {
             driver = new ChromeDriver(javaCap);
         }
 
-        @ParameterizedTest     // BBC2 Part2 Test1
+        @ParameterizedTest     // BBC2 Part2 Test1 (Verify that 2 specific teams )
         @MethodSource("dataForTestTeamScores")
     public void testTeamScoresDisplay(String nameOfChampionship, String month, String team1, String team2, int score1, int score2){
             BBCHomePage homePage = new BBCHomePage(driver);
@@ -39,6 +39,22 @@ public class BBCTwoPart2Tests {
             assertEquals(awaitedMatchResults, fromSiteResults);
 //            TODO: it should be done simplier with receiving boolean with checkTeamsAndScore()
         }
+
+    @ParameterizedTest     // BBC2 Part2 Test1 ( Verify that the score at the center)
+    @MethodSource("dataForTestTeamScores")
+    public void testCenteredScoreDisplay(String nameOfChampionship, String month, String team1, String team2, int score1, int score2){
+        BBCHomePage homePage = new BBCHomePage(driver);
+        BBCSportPage sportPage = homePage.sportPageClick();
+        BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
+
+
+        matchResults awaitedMatchResults = new matchResults(team1, team2, score1, score2);
+        matchResults fromSiteResults = scoresPageOne.checkTeamsAndScore(team1, team2, score1, score2, awaitedMatchResults);
+        assertEquals(awaitedMatchResults, fromSiteResults);
+
+    }
+
+
     static Stream<Arguments> dataForTestTeamScores() {
        // name of championship | month | team1(left) | team2(right) | score1 | score2
         return Stream.of(
