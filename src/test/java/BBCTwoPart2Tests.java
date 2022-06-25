@@ -45,9 +45,10 @@ public class BBCTwoPart2Tests {
     public void testCenteredScoreDisplay(String nameOfChampionship, String month, String team1, String team2, int score1, int score2){
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCSportPage sportPage = homePage.sportPageClick();
-        BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
-
-
+        BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month).clickTeam(team1);
+        // TODO not ended from this part:  Verify that the score at the center of the screen is also the one from your test (same value).
+        // requested position here:
+        System.out.println(this.driver.findElement(By.cssSelector("article > div.sp-c-fixture__wrapper")).getLocation());
         matchResults awaitedMatchResults = new matchResults(team1, team2, score1, score2);
         matchResults fromSiteResults = scoresPageOne.checkTeamsAndScore(team1, team2, score1, score2, awaitedMatchResults);
         assertEquals(awaitedMatchResults, fromSiteResults);
@@ -60,13 +61,15 @@ public class BBCTwoPart2Tests {
         return Stream.of(
                 Arguments.of("Scottish Championship", "MAY", "Airdrieonians", "Queen's Park", 1, 2),
                 Arguments.of("Scottish Championship", "MAY", "Dunfermline", "Queen's Park", 0, 1),
-                Arguments.of("Scottish Championship", "APR", "Dunfermline", "Queen of the South", 1, 2)
+                Arguments.of("Scottish Championship", "APR", "Dunfermline", "Queen of the South", 1, 2),
+                Arguments.of("Danish Superliga", "FEB", "Aalborg BK", "Silkeborg IF", 1, 4),
+                Arguments.of("Rangers", "MAR", "Red Star Belgrade", "Rangers", 2, 1)
                 );
     }
 
-//    @AfterAll
-//    public static void cleanUp(){
-//        driver.manage().deleteAllCookies();
-//        driver.close();
-//    }
+    @AfterAll
+    public static void cleanUp(){
+        driver.manage().deleteAllCookies();
+        driver.close();
+    }
 }

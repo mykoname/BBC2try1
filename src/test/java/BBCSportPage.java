@@ -51,11 +51,9 @@ public class BBCSportPage extends PageObject {
 //        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.driver.findElement(By.xpath("//"+monthXpathBase+month+"')]")).click();
         BBCSportPage scoresPageMonth = new BBCSportPage(driver);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return scoresPageMonth;
     }
-
-
-
 
     public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
@@ -66,10 +64,10 @@ public class BBCSportPage extends PageObject {
         matchResults[] allResults = new matchResults[numberOfLines];
         for (int i = 0; i < numberOfLines; i++){
             allResults[i] = new matchResults(listLeft.get(i).getText(),listRight.get(i).getText(), Integer.valueOf(scopeLeft.get(i).getText()), Integer.valueOf(scopeRight.get(i).getText()));
-           System.out.println("teamLeft "+i+":   "+allResults[i].teamLeft);
-            System.out.println("scoreLeft "+i+":  "+ allResults[i].scoreLeft);
-            System.out.println("teamRight "+i+":   "+allResults[i].teamRight);
-            System.out.println("scoreRight "+i+":  "+allResults[i].scoreRight);
+//           System.out.println("teamLeft "+i+":   "+allResults[i].teamLeft);
+//            System.out.println("scoreLeft "+i+":  "+ allResults[i].scoreLeft);
+//            System.out.println("teamRight "+i+":   "+allResults[i].teamRight);
+//            System.out.println("scoreRight "+i+":  "+allResults[i].scoreRight);
         }
         int rightLineNumber = 0;
         while (!allResults[rightLineNumber].equals(assessedResult) & rightLineNumber<numberOfLines){
@@ -79,5 +77,18 @@ public class BBCSportPage extends PageObject {
         return fromSiteAppropriateResult;
     }
 
-
+    public BBCSportPage clickTeam(String team1){
+        List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
+//        List<WebElement> scopeLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block > span"));
+        List<WebElement> listRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span > span > span"));
+//        List<WebElement> scopeRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block > span"));
+        int numberOfLines = listLeft.size();
+        int i = 0;
+        while (!listLeft.get(i).getText().equals(team1) & i<numberOfLines){
+            i++;
+        }
+        listLeft.get(i).click();
+        BBCSportPage scoresPageTwoTeams = new BBCSportPage(driver);
+        return scoresPageTwoTeams;
+    }
 }
