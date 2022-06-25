@@ -93,7 +93,7 @@ public class BBCSportPage extends PageObject {
             rightLineNumber++;
         }
         matchResults fromSiteAppropriateResult = allResults[rightLineNumber];
-        System.out.println("numdber of right line:   "+rightLineNumber);
+//        System.out.println("numdber of right line:   "+rightLineNumber);
         return fromSiteAppropriateResult;
     }
 

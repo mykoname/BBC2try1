@@ -14,8 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertLinesMatch;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BBCTwoPart2Tests {
 
@@ -37,12 +36,15 @@ public class BBCTwoPart2Tests {
             BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
             matchResults awaitedMatchResults = new matchResults(team1, team2, score1, score2);
             matchResults fromSiteResults = scoresPageOne.checkTeamsAndScore(team1, team2, score1, score2, awaitedMatchResults);
-
+            assertEquals(awaitedMatchResults, fromSiteResults);
+//            TODO: it should be done simplier with receiving boolean with checkTeamsAndScore()
         }
     static Stream<Arguments> dataForTestTeamScores() {
-       // name of championship | month | team1 | team2 | score1 | score2
+       // name of championship | month | team1(left) | team2(right) | score1 | score2
         return Stream.of(
-                Arguments.of("Scottish Championship", "MAY", "Dunfermline", "Queen's Park", 0, 1)
+                Arguments.of("Scottish Championship", "MAY", "Airdrieonians", "Queen's Park", 1, 2),
+                Arguments.of("Scottish Championship", "MAY", "Dunfermline", "Queen's Park", 0, 1),
+                Arguments.of("Scottish Championship", "APR", "Dunfermline", "Queen of the South", 1, 2)
                 );
     }
 
