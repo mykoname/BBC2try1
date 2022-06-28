@@ -54,7 +54,18 @@ public class BBCSportPage extends PageObject {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return scoresPageMonth;
     }
+    //!!!!!!!!!!!!!!!!!new part for Part3:
+    public TeamResult getTeamResultByName(String teamOfInterest, String secondTeam) {
+        return new TeamResult(teamOfInterest, driver);
+    }
 
+    public matchResults getMatchResults(String lhsTeamName, String rhsTeamName) {
+
+        TeamResult l = getTeamResultByName(lhsTeamName, rhsTeamName);
+        TeamResult r = getTeamResultByName(lhsTeamName, rhsTeamName);
+
+        return new matchResults(lhsTeamName, rhsTeamName, l.getScore(), r.getScore());
+    }
     public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
         List<WebElement> scopeLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block > span"));
@@ -79,9 +90,7 @@ public class BBCSportPage extends PageObject {
 
     public BBCSportPage clickTeam(String team1){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
-//        List<WebElement> scopeLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block > span"));
         List<WebElement> listRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span > span > span"));
-//        List<WebElement> scopeRight=this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block > span"));
         int numberOfLines = listLeft.size();
         int i = 0;
         while (!listLeft.get(i).getText().equals(team1) & i<numberOfLines){
@@ -91,4 +100,22 @@ public class BBCSportPage extends PageObject {
         BBCSportPage scoresPageTwoTeams = new BBCSportPage(driver);
         return scoresPageTwoTeams;
     }
+
+//    <<<<<<< maxp-complex-object-example
+//    public TeamResult getTeamResultByName(String name) {
+//        return new TeamResult(name, driver);
+//    }
+//
+//    public matchResults getMatchResults(String lhsTeamName, String rhsTeamName) {
+//        TeamResult l = getTeamResultByName(lhsTeamName);
+//        TeamResult r = getTeamResultByName(rhsTeamName);
+//
+//        return new matchResults(lhsTeamName, rhsTeamName, l.getScore(), r.getScore());
+//    }
+//
+//=======
+//        >>>>>>> maing
+
+
+
 }

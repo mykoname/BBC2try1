@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.FluentWait;
 
-public class BBCHomePage extends PageObject {
+public class BBCHomePage extends BBCPageObject {
     @FindBy(linkText = "News")
     private WebElement NewsPage;
     @FindBy(linkText = "Sport")
@@ -16,11 +16,14 @@ public class BBCHomePage extends PageObject {
         super(driver);
         driver.get(Utils.BASE_URL);
     }
+    public BBCHomePage(WebDriver driver, String URL) {
+        super(driver, URL);
+    }
 
     public BBCNewsPage NewsPageClick(){
         this.NewsPage.click();
-        BBCNewsPage newsPage = new BBCNewsPage(driver);
-    return newsPage;
+//        BBCNewsPage newsPage = new BBCNewsPage(driver);
+    return new BBCNewsPage(driver);
     }
 
     public BBCSportPage sportPageClick(){

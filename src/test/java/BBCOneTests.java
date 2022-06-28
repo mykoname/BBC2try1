@@ -25,10 +25,16 @@ public class BBCOneTests {
 
     @Test
     public void testGetMainNewsName(){  // Part 1 test1
-        BBCHomePage homePage = new BBCHomePage(driver);
+        BBCHomePage homePage = new BBCHomePage(driver, Utils.BASE_URL);
         BBCNewsPage newsPage = homePage.NewsPageClick();
         String avaitedName = "Zelensky visits front-line cities in south Ukraine";
         assertLinesMatch(Collections.singletonList(avaitedName), Collections.singletonList(newsPage.nameOfHeadline()));
+    }
+    @Test
+    public void testGetMainNewsTitle(){  // Part 1 test1  -- the same as previous but shortest
+        BBCHomePage homePage = new BBCHomePage(driver, Utils.BASE_URL);
+        BBCNewsPage newsPage = homePage.NewsPageClick();
+        Assertions.assertEquals("Zelensky visits front-line cities in south Ukraine", newsPage.getTopStoryTitle());
     }
 
     @Test

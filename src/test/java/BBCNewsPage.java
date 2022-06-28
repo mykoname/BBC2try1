@@ -7,7 +7,9 @@ import org.openqa.selenium.support.FindBys;
 import java.util.Arrays;
 import java.util.List;
 
-public class BBCNewsPage extends PageObject {
+public class BBCNewsPage extends BBCPageObject {
+    @FindBy(css = "div.nw-c-top-stories__primary-item h3")
+    private WebElement topStoryTitle;
 
     @FindBy(id = "news-top-stories-container")
     WebElement newsTopContainer;
@@ -33,6 +35,9 @@ public class BBCNewsPage extends PageObject {
     public String getMainNewsCategoryName(){
         String name = this.categoryLink.getText();
         return name;
+    }
+    public String getTopStoryTitle() {
+        return topStoryTitle.getText();
     }
     public String storedSearchTerm(){
         String term = getMainNewsCategoryName();
