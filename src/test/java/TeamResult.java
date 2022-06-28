@@ -6,11 +6,12 @@ public class TeamResult {
         WebElement Score;
 
         public TeamResult(String teamName, WebDriver driver) {
-            driver.findElement(By.className("sp-c-fixture__team-name.sp-c-fixture__team-name--home"));
+            driver.findElement(By.className("sp-c-fixture__team-name-wrap"));
         }
 
+    //TODO: не доганяю, звідки береться/подається  _teamBlock?:
         public TeamResult(WebElement _teamBlock) {
-            Score = _teamBlock.findElement(By.cssSelector("span.sp-c-fixture__block > span"));
+            Score = _teamBlock.findElement(By.cssSelector("div")); //span.sp-c-fixture__block > span
         }
 
         public int getScore() {

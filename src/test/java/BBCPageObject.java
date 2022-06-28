@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class BBCPageObject {
     protected WebDriver driver;
 
@@ -13,11 +16,11 @@ public class BBCPageObject {
             driver.get(url);
         }
 
-        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-consent-root")));
+        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-consent-root")));
 
         PageFactory.initElements(driver, this);
-        DeleteElement("fc-consent-root");
+//        DeleteElement("fc-consent-root");
     }
 
     public BBCPageObject(WebDriver driver){
@@ -32,4 +35,4 @@ public class BBCPageObject {
         }
     }
 }
-}
+

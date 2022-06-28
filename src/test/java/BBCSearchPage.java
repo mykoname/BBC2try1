@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class BBCSearchPage extends PageObject {
+public class BBCSearchPage extends BBCPageObject {
 
     @FindBy (id = "search-input")
     private WebElement searchBar;

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class BBCSportPage extends PageObject {
+public class BBCSportPage extends BBCPageObject {
 
         @FindBy(linkText = "Football")
         private WebElement footballLink;
