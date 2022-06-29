@@ -4,8 +4,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.stream.Stream;
@@ -20,7 +23,11 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
         dc.setJavascriptEnabled(false);
         ChromeOptions javaCap = new ChromeOptions();
         javaCap.merge(dc);
-        driver = new ChromeDriver(javaCap);
+          ChromeOptions chromePath = new ChromeOptions();
+          chromePath.setBinary("C:\\Program Files\\Google\\Chrome Beta\\Application\\chrome.exe");
+          chromePath.merge(javaCap);
+//        driver = new ChromeDriver(javaCap);
+          driver = new ChromeDriver(chromePath);
     }
 
     @ParameterizedTest     // BBC2 Part3 Test1 ( Verify that the score at the center)
@@ -29,9 +36,36 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCSportPage sportPage = homePage.sportPageClick();
         // TODO not ended from this part:
-        BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month).clickTeam(team1);
+        BBCSportPage scoresPageOne = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month); //.clickTeam(team1);
+
+        Score expected = new Score(score1, score2);
+        // #u2672365329034485 > div > div:nth-child(3) > div > div > span > div > div:nth-child(1) > ul > li > a > article > div > span.sp-c-fixture__team.sp-c-fixture__team--home
+    //    System.out.println(scoresPageOne.driver.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]//span[@class ='sp-c-fixture__team']")).getText());
+        WebElement matchResultsBlock = scoresPageOne.driver.findElement(By.xpath("//div[@class='qa-match-block']"));
+//take all line with the right team
+        System.out.println(matchResultsBlock.getText());
+        WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]"));
+        System.out.println(playResultsBlock.getText());
+// take from line the 'yellow block':
+// желтый блок:   article > div > span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block
+//        //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]
+// приям циферки:       //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]/span
+        // team name block: //article//span[contains(text(),'Red Star Belgrade')]
+        // article > div > span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block
+        WebElement lhsRes = playResultsBlock.findElement(By.xpath("span[@class='sp-c-fixture__block']"));
+        System.out.println(lhsRes);
+
+
+// уже готовый финиш:
+     //   Score actual = scoresPageOne.getTeamResultByName(team1, team2);
+     //   assertEquals(expected, actual);
+
+
+
+
+
 //        System.out.println(scoresPageOne.driver.findElement(By.className("sp-c-fixture__team-name-wrap")).getText());
-        System.out.println(scoresPageOne.getTeamResultByName(team1, team2).Score);
+        //  System.out.println(scoresPageOne.getTeamResultByName(team1, team2));
               // requested position here:
 //        System.out.println(this.driver.findElement(By.cssSelector("article > div.sp-c-fixture__wrapper")).getLocation());
 //        matchResults awaitedMatchResults = new matchResults(team1, team2, score1, score2);

@@ -16,8 +16,8 @@ public class BBCPageObject {
             driver.get(url);
         }
 
-        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(20));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-consent-root")));
+//        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-consent-root"))); // (ExpectedConditions.visibilityOfElementLocated(By.id("page-title")));
 
         PageFactory.initElements(driver, this);
 //        DeleteElement("fc-consent-root");

@@ -23,6 +23,7 @@ public class BBCSportPage extends BBCPageObject {
         private String teamXpathBase = "article[@class ='sp-c-fixture']//abbr[@title='";
         private String poolOfPlays = "//span[@role ='region']";
 
+        private ScoreBoard board;
 
         public BBCSportPage(WebDriver driver) {super (driver); }
 
@@ -33,10 +34,12 @@ public class BBCSportPage extends BBCPageObject {
             BBCSportPage footballPage = new BBCSportPage(driver);
             return footballPage;
         }
+
     public BBCSportPage scoresPageClick(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.scoresLink.click();
         BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
+        scoresPageOne.board = new ScoreBoard(driver);
         return scoresPageOne;
     }
     public BBCSportPage makeSearchChampionship(String searchTerm){
@@ -54,18 +57,12 @@ public class BBCSportPage extends BBCPageObject {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return scoresPageMonth;
     }
+
     //!!!!!!!!!!!!!!!!!new part for Part3:
-    public TeamResult getTeamResultByName(String teamOfInterest, String secondTeam) {
-        return new TeamResult(teamOfInterest, driver);
+    public Score getTeamResultByName(String teamOfInterest, String secondTeam) {
+        return board.getScore(teamOfInterest, secondTeam);
     }
 
-    public matchResults getMatchResults(String lhsTeamName, String rhsTeamName) {
-
-        TeamResult l = getTeamResultByName(lhsTeamName, rhsTeamName);
-        TeamResult r = getTeamResultByName(lhsTeamName, rhsTeamName);
-
-        return new matchResults(lhsTeamName, rhsTeamName, l.getScore(), r.getScore());
-    }
     public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
         List<WebElement> scopeLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block > span"));
@@ -100,22 +97,6 @@ public class BBCSportPage extends BBCPageObject {
         BBCSportPage scoresPageTwoTeams = new BBCSportPage(driver);
         return scoresPageTwoTeams;
     }
-
-//    <<<<<<< maxp-complex-object-example
-//    public TeamResult getTeamResultByName(String name) {
-//        return new TeamResult(name, driver);
-//    }
-//
-//    public matchResults getMatchResults(String lhsTeamName, String rhsTeamName) {
-//        TeamResult l = getTeamResultByName(lhsTeamName);
-//        TeamResult r = getTeamResultByName(rhsTeamName);
-//
-//        return new matchResults(lhsTeamName, rhsTeamName, l.getScore(), r.getScore());
-//    }
-//
-//=======
-//        >>>>>>> maing
-
 
 
 }

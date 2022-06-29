@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class BBCHomePage extends BBCPageObject {
     @FindBy(linkText = "News")
     private WebElement NewsPage;
@@ -28,7 +30,9 @@ public class BBCHomePage extends BBCPageObject {
 
     public BBCSportPage sportPageClick(){
         this.sportPage.click();
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         BBCSportPage sportPage = new BBCSportPage(driver);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     return sportPage;
     }
 

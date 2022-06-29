@@ -6,13 +6,13 @@ public class matchResults {
     private String teamRight;
     private int scoreLeft;
     private int scoreRight;
-    TeamResult lhsTeam;
-    TeamResult rhsTeam;
-
-    public matchResults(WebElement _matchResultBlock) {
-        lhsTeam = new TeamResult(_matchResultBlock.findElement(By.cssSelector("div.lhsTeamClass")));
-        rhsTeam = new TeamResult(_matchResultBlock.findElement(By.cssSelector("div.rhsTeamClass")));
-    }
+//    TeamResult lhsTeam;
+//    TeamResult rhsTeam;
+//
+//    public matchResults(WebElement _matchResultBlock) {
+//        lhsTeam = new TeamResult(_matchResultBlock.findElement(By.cssSelector("div.lhsTeamClass")));
+//        rhsTeam = new TeamResult(_matchResultBlock.findElement(By.cssSelector("div.rhsTeamClass")));
+//    }
 
     public matchResults(String teamLeft, String teamRight, int scoreLeft, int scoreRight) {
         this.teamLeft = teamLeft;
