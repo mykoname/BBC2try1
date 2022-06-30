@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,20 +42,36 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
         Score expected = new Score(score1, score2);
         // #u2672365329034485 > div > div:nth-child(3) > div > div > span > div > div:nth-child(1) > ul > li > a > article > div > span.sp-c-fixture__team.sp-c-fixture__team--home
     //    System.out.println(scoresPageOne.driver.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]//span[@class ='sp-c-fixture__team']")).getText());
-        WebElement matchResultsBlock = scoresPageOne.driver.findElement(By.xpath("//div[@class='qa-match-block']"));
+          WebElement matchResultsBlock = scoresPageOne.driver.findElement(By.xpath("//div[@class='qa-match-block']"));  //!!receiving full match block!!
+//        List<WebElement> matchResultsBlock = scoresPageOne.driver.findElements(By.xpath("//div[@class='qa-match-block']"));  //receiving full one match data
 //take all line with the right team
-        System.out.println(matchResultsBlock.getText());
+//        for (WebElement matches : matchResultsBlock){
+//            System.out.println(matches.getText());
+//
+//            if (matches.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]")).getText().contentEquals("Red Star Belgrade")) {
+////                System.out.println(matches.findElement(By.xpath("span[@class='sp-c-fixture__block']")).getText());
+//                System.out.println("here was founded result for left team");
+//            }
+//            System.out.println("next_line");
+//        }
         WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]"));
         System.out.println(playResultsBlock.getText());
+        System.out.println(playResultsBlock);
+        System.out.println("!!!!");
 // take from line the 'yellow block':
 // желтый блок:   article > div > span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block
 //        //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]
 // приям циферки:       //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]/span
         // team name block: //article//span[contains(text(),'Red Star Belgrade')]
         // article > div > span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block
-        WebElement lhsRes = playResultsBlock.findElement(By.xpath("span[@class='sp-c-fixture__block']"));
+        // !!!!!! так всегда правильноЖ
+        WebElement lhsRes = playResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]//..//..//..//span[@class='sp-c-fixture__block']"));
+        System.out.println(lhsRes.getText());
         System.out.println(lhsRes);
-
+        System.out.println("&&&&&&&&");
+        // !!так получается неправильно (похоже, что берет первую из всех в большом блоке:
+        WebElement lhsRes2 = playResultsBlock.findElement(By.xpath("//..//..//..//span[@class='sp-c-fixture__block']"));
+        System.out.println(lhsRes2.getText());
 
 // уже готовый финиш:
      //   Score actual = scoresPageOne.getTeamResultByName(team1, team2);

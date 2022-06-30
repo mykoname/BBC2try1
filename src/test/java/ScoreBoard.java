@@ -11,9 +11,9 @@ public class ScoreBoard {
 
     public Score getScore(String team1, String team2) {
         // TODO: figure out correct xpaths
-// take all block:
-        WebElement matchResultsBlock = driver.findElement(By.cssSelector("qa-match-block"));
-//take all line with the right team
+// take all block: (done)
+        WebElement matchResultsBlock = driver.findElement(By.xpath("//div[@class='qa-match-block']"));
+//take all line with the right team  (done)
         WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]"));
 // take from line the 'yellow block':
 
