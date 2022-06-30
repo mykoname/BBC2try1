@@ -39,7 +39,7 @@ public class BBCSportPage extends BBCPageObject {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.scoresLink.click();
         BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
-     //   scoresPageOne.board = new ScoreBoard(driver);
+//        scoresPageOne.board = new ScoreBoard(driver);
         return scoresPageOne;
     }
     public BBCSportPage makeSearchChampionship(String searchTerm){
@@ -63,6 +63,10 @@ public class BBCSportPage extends BBCPageObject {
     public Score getTeamResultByName(String teamOfInterest, String secondTeam) {
         return board.getScore(teamOfInterest, secondTeam);
     }
+    public Score getTeamResultFromSingleLine(String teamOfInterest, String secondTeam) {
+        return board.getScoreFromLine(teamOfInterest, secondTeam);
+    }
+
 
     public matchResults checkTeamsAndScore(String team1, String team2, int score1, int score2, matchResults assessedResult){
         List<WebElement> listLeft =this.driver.findElements(By.cssSelector("article span.sp-c-fixture__team.sp-c-fixture__team--home > span > span > span"));
@@ -99,5 +103,14 @@ public class BBCSportPage extends BBCPageObject {
         return scoresPageTwoTeams;
     }
 
+
+    public BBCSportPage clickTeamImproved(String team1, String team2){
+        WebElement matchResultsBlock = driver.findElement(By.xpath("//div[@class='qa-match-block']"));
+        WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//*[self::article//span[@class='sp-c-fixture__team-name sp-c-fixture__team-name--home']//span[contains(text(),'"+team1+"')] and self::article//span[@class='sp-c-fixture__team-name sp-c-fixture__team-name--away']//span[contains(text(),'"+team2+"')]]"));
+        playResultsBlock.click();
+        BBCSportPage scoresPageTwoTeamsBlock = new BBCSportPage(driver);
+        scoresPageTwoTeamsBlock.board = new ScoreBoard(driver);
+        return scoresPageTwoTeamsBlock;
+    }
 
 }
