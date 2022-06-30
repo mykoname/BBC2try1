@@ -39,7 +39,7 @@ public class BBCSportPage extends BBCPageObject {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.scoresLink.click();
         BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
-        scoresPageOne.board = new ScoreBoard(driver);
+     //   scoresPageOne.board = new ScoreBoard(driver);
         return scoresPageOne;
     }
     public BBCSportPage makeSearchChampionship(String searchTerm){
@@ -55,6 +55,7 @@ public class BBCSportPage extends BBCPageObject {
         this.driver.findElement(By.xpath("//"+monthXpathBase+month+"')]")).click();
         BBCSportPage scoresPageMonth = new BBCSportPage(driver);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        scoresPageMonth.board = new ScoreBoard(driver);
         return scoresPageMonth;
     }
 

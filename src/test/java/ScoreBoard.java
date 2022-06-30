@@ -14,20 +14,16 @@ public class ScoreBoard {
 // take all block: (done)
         WebElement matchResultsBlock = driver.findElement(By.xpath("//div[@class='qa-match-block']"));
 //take all line with the right team  (done)
-        WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]"));
-// take from line the 'yellow block':
+        // WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//article//span[contains(text(),'Red Star Belgrade')]"));
+//take all lines with the right pair of teams: (done)
+        //  "//*[self::article//span[contains(text(),'Rangers')] and self::article//span[contains(text(),'Aberdeen')]]"
+         WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//*[self::article//span[contains(text(),'"+team1+"')] and self::article//span[contains(text(),'"+team2+"')]]"));
+// take from line the 'yellow block' (realised without color): (done)
+        WebElement lhsRes = playResultsBlock.findElement(By.xpath("//article//span[contains(text(),'"+team1+"')]//..//..//..//span[@class='sp-c-fixture__number sp-c-fixture__number--home sp-c-fixture__number--ft']"));
+        WebElement rhsRes = playResultsBlock.findElement(By.xpath("//article//span[contains(text(),'"+team2+"')]//..//..//..//span[@class='sp-c-fixture__number sp-c-fixture__number--away sp-c-fixture__number--ft']"));
 
-// желтый блок:   article > div > span.sp-c-fixture__team.sp-c-fixture__team--home > span.sp-c-fixture__block
-//        //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]
-// приям циферки:       //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[1]/span[2]/span
-        // team name block: //article//span[contains(text(),'Red Star Belgrade')]
-        // article > div > span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block
-        WebElement lhsRes = playResultsBlock.findElement(By.xpath("span[@class ='sp-c-fixture__block']")); // this is the yellow block after first team
-       //  article > div > span.sp-c-fixture__team.sp-c-fixture__team--away > span.sp-c-fixture__block
-//        //*[@id="u020272446267453947"]/div/div[3]/div/div/span/div/div[1]/ul/li/a/article/div/span[3]/span[2]
-
-        WebElement rhsRes = playResultsBlock.findElement(By.xpath("")); // this is the yellow block after second team
-        return new Score(Integer.parseInt(lhsRes.getText()), Integer.parseInt(rhsRes.getText()));
+        System.out.println(Integer.parseInt(lhsRes.getText())+"   "+Integer.parseInt(rhsRes.getText()));
+        System.out.println("!!!!");
+    return new Score(Integer.parseInt(lhsRes.getText()), Integer.parseInt(rhsRes.getText()));
     }
-
 }
