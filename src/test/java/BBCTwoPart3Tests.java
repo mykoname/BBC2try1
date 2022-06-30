@@ -37,30 +37,10 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
     public void testTeamScoresDisplayImproved(String nameOfChampionship, String month, String team1, String team2, int score1, int score2){
         BBCHomePage homePage = new BBCHomePage(driver);
         BBCSportPage sportPage = homePage.sportPageClick();
-        // TODO not ended from this part:
         BBCSportPage scoresPageMonth = sportPage.footballPageClick().scoresPageClick().makeSearchChampionship(nameOfChampionship).monthSelectorClick(month);
-//        scoresPageMonth.getTeamResultByName(team1, team2);
         Score expected = new Score(score1, score2);
-//         WebElement matchResultsBlock = scoresPageOne.driver.findElement(By.xpath("//div[@class='qa-match-block']"));  //!!receiving full match block!!
-//        WebElement playResultsBlock = matchResultsBlock.findElement(By.xpath("//*[self::article//span[contains(text(),'"+team1+"')] and self::article//span[contains(text(),'"+team2+"')]]"));
-//             // take from line the 'yellow block':
-//        WebElement lhsRes = playResultsBlock.findElement(By.xpath("//article//span[contains(text(),'"+team1+"')]//..//..//..//span[@class='sp-c-fixture__block']"));
-//        System.out.println(lhsRes.getText());
-//        System.out.println(lhsRes);
-//        System.out.println("&&&&&&&&");
-
-// уже готовый финиш:
-//        System.out.println(expected);
-//        System.out.println(Integer.parseInt(String.valueOf(expected)));
-        System.out.println(scoresPageMonth.getTeamResultByName(team1, team2));
-//           Score actual = scoresPageMonth.getTeamResultByName(team1, team2);
-//           assertEquals(expected, actual);
-
-// старый финиш:
-//        matchResults awaitedMatchResults = new matchResults(team1, team2, score1, score2);
-//        matchResults fromSiteResults = scoresPageOne.checkTeamsAndScore(team1, team2, score1, score2, awaitedMatchResults);
-//        assertEquals(awaitedMatchResults, fromSiteResults);
-
+        Score actual = scoresPageMonth.getTeamResultByName(team1, team2);
+        assertEquals(expected, actual);
     }
 
 

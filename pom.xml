@@ -16,7 +16,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.1.4</version>
+            <version>4.2.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -32,15 +32,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-<!--    <capabilities>-->
-<!--        'browserName': 'chrome',-->
-<!--        "chromeOptions": {-->
-<!--        binary: "/Applications/your_path/Google Chrome.app/Contents/MacOS/Google Chrome"-->
-<!--        },-->
-<!--        },-->
-<!--    </capabilities>: {-->
-
-
-
 </project>

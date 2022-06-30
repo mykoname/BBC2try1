@@ -15,7 +15,8 @@ class Score {
         }
         if (otherObject instanceof Score) {
             Score other = (Score) otherObject;
-            return result1 == other.result1 && result2 == other.result2;
+            boolean b = (result1 == (other.result1) & result2 == (other.result2));
+            return b;
         }
         return false;
     }

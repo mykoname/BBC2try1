@@ -59,7 +59,7 @@ public class BBCSportPage extends BBCPageObject {
         return scoresPageMonth;
     }
 
-    //!!!!!!!!!!!!!!!!!new part for Part3:
+    //!!!!!!!!!!!!!!!!!new method for Part3:
     public Score getTeamResultByName(String teamOfInterest, String secondTeam) {
         return board.getScore(teamOfInterest, secondTeam);
     }
