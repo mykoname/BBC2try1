@@ -15,25 +15,26 @@ public class BBCHomePage extends BBCPageObject {
 
 
     public BBCHomePage(WebDriver driver) {
-        super(driver);
-        driver.get(Utils.BASE_URL);
+        super(driver, Utils.BASE_URL);
+//        WaitElement("#orb-header > div > nav.orbit-header-links.international");
+//        driver.get(Utils.BASE_URL);
     }
     public BBCHomePage(WebDriver driver, String URL) {
         super(driver, URL);
+        WaitElement("#orb-header > div > nav.orbit-header-links.international");
     }
 
     public BBCNewsPage NewsPageClick(){
         this.NewsPage.click();
 //        BBCNewsPage newsPage = new BBCNewsPage(driver);
-    return new BBCNewsPage(driver);
+        return new BBCNewsPage(driver);
     }
 
     public BBCSportPage sportPageClick(){
         this.sportPage.click();
 //        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         BBCSportPage sportPage = new BBCSportPage(driver);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    return sportPage;
+        return sportPage;
     }
 
 

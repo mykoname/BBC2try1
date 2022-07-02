@@ -25,8 +25,11 @@ public class BBCSportPage extends BBCPageObject {
 
         private ScoreBoard board;
 
-        public BBCSportPage(WebDriver driver) {super (driver); }
-
+        public BBCSportPage(WebDriver driver) {super (driver);
+        }
+    public String getWaitSelector(){
+        return "div.sp-c-sport-navigation--secondary"; // TODO: more specific selector  and such for every pageClass
+    }
         public BBCSportPage footballPageClick(){
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             this.footballLink.click();

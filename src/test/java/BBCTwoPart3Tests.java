@@ -55,11 +55,11 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
     static Stream<Arguments> dataForTestTeamScores() {
         // name of championship | month | team1(left) | team2(right) | score1 | score2
         return Stream.of(
-                Arguments.of("Scottish Championship", "MAY", "Airdrieonians", "Queen's Park", 1, 2),
-                Arguments.of("Scottish Championship", "MAY", "Dunfermline", "Queen's Park", 0, 1),
-                Arguments.of("Scottish Championship", "APR", "Dunfermline", "Queen of the South", 1, 2),
-                Arguments.of("Danish Superliga", "FEB", "Aalborg BK", "Silkeborg IF", 1, 4),
-                Arguments.of("Rangers", "MAR", "Dundee", "Rangers", 1, 2),
+//                Arguments.of("Scottish Championship", "MAY", "Airdrieonians", "Queen's Park", 1, 2),
+//                Arguments.of("Scottish Championship", "MAY", "Dunfermline", "Queen's Park", 0, 1),
+//                Arguments.of("Scottish Championship", "APR", "Dunfermline", "Queen of the South", 1, 2),
+//                Arguments.of("Danish Superliga", "FEB", "Aalborg BK", "Silkeborg IF", 1, 4),
+//                Arguments.of("Rangers", "MAR", "Dundee", "Rangers", 1, 2),
                 Arguments.of("Rangers", "MAR", "St Johnstone", "Rangers", 0, 1)
         );
     }

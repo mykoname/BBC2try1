@@ -15,17 +15,24 @@ public class BBCPageObject {
         if (!url.isEmpty()) {
             driver.get(url);
         }
-
-//        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fc-consent-root"))); // (ExpectedConditions.visibilityOfElementLocated(By.id("page-title")));
-
+// TODO maybe to call WaitELEment here or after Page Factory
         PageFactory.initElements(driver, this);
-//        DeleteElement("fc-consent-root");
+//        DeleteElement("fc-consent-root"); // for countries with strict GDPR
     }
 
     public BBCPageObject(WebDriver driver){
         this(driver, "");
     }
+
+    public void WaitElement(){
+        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(getWaitSelector()))); // (ExpectedConditions.visibilityOfElementLocated(By.id("page-title")));
+   }
+
+   public String getWaitSelector(){
+        return "#orb-header > div > nav.orbit-header-links.international";
+   }
+
 
     public void DeleteElement(String className) {
         JavascriptExecutor js;
