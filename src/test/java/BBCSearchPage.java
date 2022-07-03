@@ -15,6 +15,10 @@ public class BBCSearchPage extends BBCPageObject {
 
     public BBCSearchPage(WebDriver driver) {super (driver); }
 
+//    public String getWaitSelector(){
+//        return "#search-input";
+//    }
+
     public BBCSearchPage makeSearch(String searchTerm){
         this.searchBar.sendKeys(searchTerm);
         this.startSearch.click();

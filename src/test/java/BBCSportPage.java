@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -27,13 +28,11 @@ public class BBCSportPage extends BBCPageObject {
 
         public BBCSportPage(WebDriver driver) {super (driver);
         }
-    public String getWaitSelector(){
-        return "div.sp-c-sport-navigation--secondary"; // TODO: more specific selector  and such for every pageClass
-    }
-        public BBCSportPage footballPageClick(){
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//    public String getWaitSelector(){
+//        return  "a#aw0"; // "nth-child"; // "#footer-content"; //  // "div.sp-c-sport-navigation";
+//    }
+        public BBCSportPage footballPageClick(){  // "div.orb-footer"
             this.footballLink.click();
-            //this.startSearch.click();
             BBCSportPage footballPage = new BBCSportPage(driver);
             return footballPage;
         }
@@ -41,7 +40,7 @@ public class BBCSportPage extends BBCPageObject {
     public BBCSportPage scoresPageClick(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.scoresLink.click();
-        BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: -- try PageFactory here вместо
+        BBCSportPage scoresPageOne = new BBCSportPage(driver); //TODO: try PageFactory here as a substitute of new page
 //        scoresPageOne.board = new ScoreBoard(driver);
         return scoresPageOne;
     }

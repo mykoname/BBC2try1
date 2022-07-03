@@ -15,7 +15,8 @@ public class BBCPageObject {
         if (!url.isEmpty()) {
             driver.get(url);
         }
-// TODO maybe to call WaitELEment here or after Page Factory
+// TODO maybe to call WaitELEment here or after PageFactory:
+        WaitElement();
         PageFactory.initElements(driver, this);
 //        DeleteElement("fc-consent-root"); // for countries with strict GDPR
     }
@@ -26,11 +27,13 @@ public class BBCPageObject {
 
     public void WaitElement(){
         WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(getWaitSelector()))); // (ExpectedConditions.visibilityOfElementLocated(By.id("page-title")));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(getWaitSelector())));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getWaitSelector())));
    }
 
    public String getWaitSelector(){
-        return "#orb-header > div > nav.orbit-header-links.international";
+                      // "//div[contains(text(),'Find us here') or contains(text(),'Explore the BBC')]";
+        return "//*[contains(text(),' The BBC is not responsible for the content of external sites. ')]";   //   "#orb-header > div > nav.orbit-header-links.international";
    }
 
 

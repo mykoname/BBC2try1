@@ -48,7 +48,6 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
         Score actual = scoresPageOne.getTeamResultFromSingleLine(team1, team2);
         assertEquals(expected, actual);
         // TODO: it would be good also to check exactly centered
-
     }
 
 
@@ -64,9 +63,9 @@ public class BBCTwoPart3Tests {  // BBC2 Task3  Part3
         );
     }
 
-    @AfterAll
-    public static void cleanUp(){
-        driver.manage().deleteAllCookies();
-        driver.close();
-    }
+//    @AfterAll
+//    public static void cleanUp(){
+//        driver.manage().deleteAllCookies();
+//        driver.close();
+//    }
 }

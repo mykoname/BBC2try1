@@ -55,7 +55,6 @@ public class BBCNewsPage extends BBCPageObject {
 
 
     public List<String> secondaryArticlesTitlesList(){
-// TODO: couldn't undesrtand how to use here  WebElement secondaryArticlesTitles   ?:
         List<WebElement> listOfTitles = this.driver.findElements(By.xpath("//div[@id ='news-top-stories-container']//a[@href]//h3"));
         int number = listOfTitles.size();
         String[] puredTitles = new String[number];
